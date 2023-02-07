@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-import math
+from methods import *
 
 
 class App(tk.Tk):
@@ -88,12 +88,19 @@ class App(tk.Tk):
         self.second_car_boost_entry.grid(row=6, column=2)
         self.second_car_speed_entry.grid(row=6, column=3)
         self.second_car_max_speed_entry.grid(row=6, column=4)
-        self.second_car_x_entry.grid(row=6, column=5)
+        self.second_car_x_entry.grid(row=6, column=5, pady=5)
 
-        self.confirm_button.grid(row=7, column=3, pady=5)
+        self.between_label.grid(row=7, column=1, pady=5)
+        self.between_entry.grid(row=7, column=2)
+
+        self.confirm_button.grid(row=8, column=3, pady=5)
 
     def start(self):
-        pass
+        if self.first_car_x.get() + self.first_car_len.get() > self.second_car_x.get() + self.second_car_len.get():
+            print(classicTask(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
+                              self.first_car_x.get(), self.second_car_speed.get(), self.second_car_boost.get(),
+                              self.second_car_len.get(), self.second_car_x.get()))
+
 
 if __name__ == '__main__':
     root = App()
