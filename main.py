@@ -9,11 +9,12 @@ class App(tk.Tk):
 
     def __init__(self):
         super().__init__()
-        self.title('Car replacing')
+        self.title('Cars overtaking')
 
         # parameters
 
         self.second_check = BooleanVar()
+        self.third_check = BooleanVar()
 
         self.first_car_len = DoubleVar()
         self.first_car_boost = DoubleVar()
@@ -108,8 +109,10 @@ class App(tk.Tk):
 
         self.confirm_button = Button(text='Continue', command=self.start)
 
-        self.second_method_check = Checkbutton(text='Oncoming traffic', command=self.oncoming_traffic, var=self.second_check)
-        self.third_method_check = Checkbutton(text='Oncoming overtaking', command=self.oncoming_overtaking)
+        self.second_method_check = Checkbutton(text='Oncoming traffic', command=self.oncoming_traffic,
+                                               var=self.second_check)
+        self.third_method_check = Checkbutton(text='Oncoming overtaking', command=self.oncoming_overtaking,
+                                              var=self.third_check)
 
         # packing
 
@@ -187,7 +190,9 @@ class App(tk.Tk):
         self.confirm_button.grid(row=15, column=3, pady=5)
 
     def start(self):
-        if self.second_check.get():
+        if self.second_check.get() and self.third_check.get():
+            self.third_method()
+        elif self.second_check.get():
             self.second_method()
         else:
             self.first_method()
@@ -220,7 +225,27 @@ class App(tk.Tk):
                 mb.showinfo('Success', _msg.format(_value))
             else:
                 _msg = 'Overtaking will not happen'
+                mb.showwarning('Warning', _msg)
+        else:
+            mb.showerror('Error', 'Incorrect cars positions')
+
+    def third_method(self):
+        if self.first_car_x.get() + self.first_car_len.get() > self.second_car_x.get() + self.second_car_len.get():
+            _value = third(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
+                           self.first_car_x.get(), self.second_car_x.get(), self.between_length.get(),
+                           self.first_car_max_speed.get(), self.second_car_speed.get(),
+                           self.fourth_car_x.get(), self.fourth_car_speed.get(), self.fourth_car_boost.get(),
+                           self.fourth_car_len.get(), self.third_car_x.get(), self.between_length_2.get(),
+                           self.fourth_car_max_speed.get(), self.third_car_speed.get())
+            if _value == 'smash':
+                _msg = 'Cars will smash'
                 mb.showerror('Error', _msg)
+            elif _value:
+                _msg = 'Overtaking will happen for {} seconds'
+                mb.showinfo('Success', _msg.format(_value))
+            else:
+                _msg = 'Overtaking will not happen'
+                mb.showwarning('Warning', _msg)
         else:
             mb.showerror('Error', 'Incorrect cars positions')
 
