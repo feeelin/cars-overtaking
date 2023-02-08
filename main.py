@@ -97,12 +97,21 @@ class App(tk.Tk):
         self.confirm_button.grid(row=8, column=3, pady=5)
 
     def start(self):
-        #if self.first_car_x.get() + self.first_car_len.get() > self.second_car_x.get() + self.second_car_len.get():
+        self.first_method()
+
+    def first_method(self):
+        if self.first_car_x.get() + self.first_car_len.get() > self.second_car_x.get() + self.second_car_len.get():
             value = first(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
                           self.first_car_x.get(), self.second_car_x.get(), self.between_length.get(),
-                          self.first_car_max_speed.get())
-            _msg = 'Overtaking will happen for {} seconds'
-            mb.showinfo('Success', _msg.format(value))
+                          self.first_car_max_speed.get(), self.second_car_speed.get())
+            if value:
+                _msg = 'Overtaking will happen for {} seconds'
+                mb.showinfo('Success', _msg.format(value))
+            else:
+                _msg = 'Overtaking will not happen'
+                mb.showerror('Error', _msg)
+        else:
+            mb.showerror('Error', 'Incorrect cars positions')
 
 
 if __name__ == '__main__':
