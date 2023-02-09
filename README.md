@@ -1,2 +1,2 @@
 # car-replace
- Study project
+A program that calculates the possibility of overtaking
