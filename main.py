@@ -198,7 +198,7 @@ class App(tk.Tk):
             self.first_method()
 
     def first_method(self):
-        if self.first_car_x.get() + self.first_car_len.get() > self.second_car_x.get() + self.second_car_len.get():
+        if self.first_car_x.get() < self.second_car_x.get():
             _value = first(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
                            self.first_car_x.get(), self.second_car_x.get(), self.between_length.get(),
                            self.first_car_max_speed.get(), self.second_car_speed.get())
@@ -212,7 +212,7 @@ class App(tk.Tk):
             mb.showerror('Error', 'Incorrect cars positions')
 
     def second_method(self):
-        if self.first_car_x.get() + self.first_car_len.get() > self.second_car_x.get() + self.second_car_len.get():
+        if self.first_car_x.get() < self.second_car_x.get():
             _value = second(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
                             self.first_car_x.get(), self.second_car_x.get(), self.between_length.get(),
                             self.first_car_max_speed.get(), self.second_car_speed.get(), self.third_car_x.get(),
@@ -230,7 +230,7 @@ class App(tk.Tk):
             mb.showerror('Error', 'Incorrect cars positions')
 
     def third_method(self):
-        if self.first_car_x.get() + self.first_car_len.get() > self.second_car_x.get() + self.second_car_len.get():
+        if self.first_car_x.get() < self.second_car_x.get():
             _value = third(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
                            self.first_car_x.get(), self.second_car_x.get(), self.between_length.get(),
                            self.first_car_max_speed.get(), self.second_car_speed.get(),
