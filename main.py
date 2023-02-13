@@ -13,8 +13,7 @@ class App(customtkinter.CTk):
 
         # parameters
 
-        self.second_check = BooleanVar()
-        self.third_check = BooleanVar()
+        self.third_check_off = BooleanVar()
 
         self.first_car_len = IntVar()
         self.first_car_boost = IntVar()
@@ -112,7 +111,8 @@ class App(customtkinter.CTk):
         self.second_method_check = customtkinter.CTkCheckBox(self, text='Oncoming traffic',
                                                              command=self.oncoming_traffic)
         self.third_method_check = customtkinter.CTkCheckBox(self, text='Oncoming overtaking',
-                                                            command=self.oncoming_overtaking)
+                                                            command=self.oncoming_overtaking,
+                                                            variable=self.third_check_off)
 
         # packing
 
@@ -183,28 +183,6 @@ class App(customtkinter.CTk):
             self.third_car_speed_entry.grid_remove()
             self.third_car_max_speed_entry.grid_remove()
             self.third_car_x_entry.grid_remove()
-
-    def oncoming_overtaking(self):
-        if self.third_method_check.get():
-            self.fourth_car_label.grid(row=11, column=3, pady=10)
-
-            self.x_label_4.grid(row=12, column=5)
-            self.speed_label_4.grid(row=12, column=3)
-            self.boost_label_4.grid(row=12, column=2)
-            self.max_speed_label_4.grid(row=12, column=4)
-            self.len_label_4.grid(row=12, column=1)
-
-            self.fourth_car_len_entry.grid(row=13, column=1)
-            self.fourth_car_boost_entry.grid(row=13, column=2)
-            self.fourth_car_speed_entry.grid(row=13, column=3)
-            self.fourth_car_max_speed_entry.grid(row=13, column=4)
-            self.fourth_car_x_entry.grid(row=13, column=5)
-
-            self.between_label_2.grid(row=14, column=1, pady=10)
-            self.between_entry_2.grid(row=14, column=2)
-
-            self.confirm_button.grid(row=15, column=3, pady=5)
-        else:
             self.fourth_car_label.grid_remove()
 
             self.x_label_4.grid_remove()
@@ -221,6 +199,50 @@ class App(customtkinter.CTk):
 
             self.between_label_2.grid_remove()
             self.between_entry_2.grid_remove()
+
+            self.third_check_off.set(False)
+
+    def oncoming_overtaking(self):
+        if self.second_method_check.get():
+            if self.third_method_check.get():
+                self.fourth_car_label.grid(row=11, column=3, pady=10)
+
+                self.x_label_4.grid(row=12, column=5)
+                self.speed_label_4.grid(row=12, column=3)
+                self.boost_label_4.grid(row=12, column=2)
+                self.max_speed_label_4.grid(row=12, column=4)
+                self.len_label_4.grid(row=12, column=1)
+
+                self.fourth_car_len_entry.grid(row=13, column=1)
+                self.fourth_car_boost_entry.grid(row=13, column=2)
+                self.fourth_car_speed_entry.grid(row=13, column=3)
+                self.fourth_car_max_speed_entry.grid(row=13, column=4)
+                self.fourth_car_x_entry.grid(row=13, column=5)
+
+                self.between_label_2.grid(row=14, column=1, pady=10)
+                self.between_entry_2.grid(row=14, column=2)
+
+                self.confirm_button.grid(row=15, column=3, pady=5)
+            else:
+                self.fourth_car_label.grid_remove()
+
+                self.x_label_4.grid_remove()
+                self.speed_label_4.grid_remove()
+                self.boost_label_4.grid_remove()
+                self.max_speed_label_4.grid_remove()
+                self.len_label_4.grid_remove()
+
+                self.fourth_car_len_entry.grid_remove()
+                self.fourth_car_boost_entry.grid_remove()
+                self.fourth_car_speed_entry.grid_remove()
+                self.fourth_car_max_speed_entry.grid_remove()
+                self.fourth_car_x_entry.grid_remove()
+
+                self.between_label_2.grid_remove()
+                self.between_entry_2.grid_remove()
+        else:
+            self.third_check_off.set(False)
+            mb.showerror('Error', 'Cannot to choose an oncoming overtaking\nOncoming traffic is disabled')
 
     def start(self):
         if self.second_method_check.get() and self.third_method_check.get():
