@@ -2,4 +2,4 @@
 
 A program that calculates the possibility of overtaking
 
-now in work
+<i>now in work</i>
