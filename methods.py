@@ -1,8 +1,10 @@
 
-def first(first_speed, first_boost, first_length, first_x, second_x, between, max_speed, second_speed):
-    if max_speed > second_speed:
-
-        _way = (second_x + between + first_length) - first_x
+def first(first_speed, first_boost, first_length, first_x, second_x, between, max_speed, second_speed, second_boost,
+          second_length):
+    if max_speed > second_speed and (first_speed > second_speed or first_boost > second_boost):
+        if first_boost == 0:
+            first_boost += 1
+        _way = (second_x + between + first_length +second_length) - first_x
         _time = _way / (second_speed + 10 - first_speed) + (second_speed + 10 - first_speed) / first_boost
         return _time
 

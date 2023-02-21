@@ -48,7 +48,7 @@ class App(customtkinter.CTk):
 
         self.first_car_len_entry = customtkinter.CTkEntry(self, textvariable=self.first_car_len)
         self.first_car_boost_entry = customtkinter.CTkEntry(self, textvariable=self.first_car_boost)
-        self.first_car_speed_entry = customtkinter.CTkEntry(self,textvariable=self.first_car_speed)
+        self.first_car_speed_entry = customtkinter.CTkEntry(self, textvariable=self.first_car_speed)
         self.first_car_max_speed_entry = customtkinter.CTkEntry(self, textvariable=self.first_car_max_speed)
         self.first_car_x_entry = customtkinter.CTkEntry(self, textvariable=self.first_car_x)
 
@@ -256,7 +256,8 @@ class App(customtkinter.CTk):
         if self.first_car_x.get() < self.second_car_x.get():
             _value = first(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
                            self.first_car_x.get(), self.second_car_x.get(), self.between_length.get(),
-                           self.first_car_max_speed.get(), self.second_car_speed.get())
+                           self.first_car_max_speed.get(), self.second_car_speed.get(), self.second_car_boost.get(),
+                           self.second_car_len.get())
             if _value:
                 _msg = 'Overtaking will happen for {} seconds'
                 mb.showinfo('Success', _msg.format(_value))
