@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import *
-from methods import *
+from old_methods import *
 import tkinter.messagebox as mb
 
 
