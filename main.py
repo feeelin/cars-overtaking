@@ -1,5 +1,7 @@
 from tkinter import *
-from old_methods import *
+from methods.first import *
+from methods.second import *
+from methods.third import *
 import tkinter.messagebox as mb
 import customtkinter
 
@@ -118,7 +120,6 @@ class App(customtkinter.CTk):
 
         self.first_car_label.grid(row=1, column=3)
 
-        self.x_label_1.grid(row=2, column=5)
         self.speed_label_1.grid(row=2, column=3)
         self.boost_label_1.grid(row=2, column=2)
         self.max_speed_label_1.grid(row=2, column=4)
@@ -128,11 +129,9 @@ class App(customtkinter.CTk):
         self.first_car_boost_entry.grid(row=3, column=2, padx=5)
         self.first_car_speed_entry.grid(row=3, column=3, padx=5)
         self.first_car_max_speed_entry.grid(row=3, column=4, padx=5)
-        self.first_car_x_entry.grid(row=3, column=5, padx=5)
 
         self.second_car_label.grid(row=4, column=3)
 
-        self.x_label_2.grid(row=5, column=5)
         self.speed_label_2.grid(row=5, column=3)
         self.boost_label_2.grid(row=5, column=2)
         self.max_speed_label_2.grid(row=5, column=4)
@@ -142,7 +141,6 @@ class App(customtkinter.CTk):
         self.second_car_boost_entry.grid(row=6, column=2)
         self.second_car_speed_entry.grid(row=6, column=3)
         self.second_car_max_speed_entry.grid(row=6, column=4)
-        self.second_car_x_entry.grid(row=6, column=5, pady=5)
 
         self.between_label.grid(row=7, column=1, pady=5)
         self.between_entry.grid(row=7, column=2)
@@ -154,6 +152,10 @@ class App(customtkinter.CTk):
 
     def oncoming_traffic(self):
         if self.second_method_check.get():
+            self.x_label_1.grid(row=2, column=5)
+            self.first_car_x_entry.grid(row=3, column=5, padx=5)
+            self.x_label_2.grid(row=5, column=5)
+            self.second_car_x_entry.grid(row=6, column=5, pady=5)
             self.third_car_label.grid(row=8, column=3, pady=10)
 
             self.x_label_3.grid(row=9, column=5)
@@ -170,6 +172,11 @@ class App(customtkinter.CTk):
 
             self.confirm_button.grid(row=11, column=3, pady=5)
         else:
+            self.x_label_1.grid_remove()
+            self.first_car_x_entry.grid_remove()
+            self.x_label_2.grid_remove()
+            self.second_car_x_entry.grid_remove()
+
             self.third_car_label.grid_remove()
 
             self.x_label_3.grid_remove()
@@ -253,26 +260,40 @@ class App(customtkinter.CTk):
             self.first_method()
 
     def first_method(self):
-        if self.first_car_x.get() < self.second_car_x.get():
-            _value = first(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
-                           self.first_car_x.get(), self.second_car_x.get(), self.between_length.get(),
-                           self.first_car_max_speed.get(), self.second_car_speed.get(), self.second_car_boost.get(),
-                           self.second_car_len.get())
+            _value = first(
+                self.first_car_speed.get(),
+                self.first_car_boost.get(),
+                self.first_car_len.get(),
+                self.between_length.get(),
+                self.first_car_max_speed.get(),
+                self.second_car_speed.get(),
+                self.second_car_boost.get(),
+                self.second_car_len.get()
+                )
             if _value:
                 _msg = 'Overtaking will happen for {} seconds'
                 mb.showinfo('Success', _msg.format(_value))
             else:
                 _msg = 'Overtaking will not happen'
                 mb.showerror('Error', _msg)
-        else:
-            mb.showerror('Error', 'Incorrect cars positions')
 
     def second_method(self):
         if self.first_car_x.get() < self.second_car_x.get():
-            _value = second(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
-                            self.first_car_x.get(), self.second_car_x.get(), self.between_length.get(),
-                            self.first_car_max_speed.get(), self.second_car_speed.get(), self.third_car_x.get(),
-                            self.third_car_speed.get(), self.third_car_boost.get())
+            _value = second(
+                self.first_car_speed.get(),
+                self.first_car_boost.get(),
+                self.first_car_len.get(),
+                self.first_car_x.get(),
+                self.second_car_len.get(),
+                self.between_length.get(),
+                self.first_car_max_speed.get(),
+                self.second_car_speed.get(),
+                self.second_car_boost.get(),
+                self.third_car_x.get(),
+                self.third_car_speed.get(),
+                self.third_car_boost.get()
+                )
+
             if _value == 'smash':
                 _msg = 'Cars will smash'
                 mb.showerror('Error', _msg)
@@ -287,12 +308,27 @@ class App(customtkinter.CTk):
 
     def third_method(self):
         if self.first_car_x.get() < self.second_car_x.get():
-            _value = third(self.first_car_speed.get(), self.first_car_boost.get(), self.first_car_len.get(),
-                           self.first_car_x.get(), self.second_car_x.get(), self.between_length.get(),
-                           self.first_car_max_speed.get(), self.second_car_speed.get(),
-                           self.fourth_car_x.get(), self.fourth_car_speed.get(), self.fourth_car_boost.get(),
-                           self.fourth_car_len.get(), self.third_car_x.get(), self.between_length_2.get(),
-                           self.fourth_car_max_speed.get(), self.third_car_speed.get())
+            _value = third(
+                self.first_car_speed.get(),
+                self.first_car_boost.get(),
+                self.first_car_len.get(),
+                self.first_car_x.get(),
+                self.second_car_len.get(),
+                self.between_length.get(),
+                self.first_car_max_speed.get(),
+                self.second_car_speed.get(),
+                self.second_car_boost.get(),
+                self.fourth_car_x.get(),
+                self.fourth_car_speed.get(),
+                self.fourth_car_boost.get(),
+                self.fourth_car_len.get(),
+                self.between_length_2.get(),
+                self.fourth_car_max_speed.get(),
+                self.third_car_speed.get(),
+                self.third_car_boost.get(),
+                self.third_car_len.get()
+            )
+
             if _value == 'smash':
                 _msg = 'Cars will smash'
                 mb.showerror('Error', _msg)

@@ -1,8 +1,9 @@
 # With oncoming traffic
 
 def second(
-        first_speed, first_boost, first_length, first_x,
-        second_length, between, max_speed, second_speed, second_boost,
+        first_speed, first_boost, first_length,
+        first_x, second_length, between,
+        max_speed, second_speed, second_boost,
         third_x, third_speed, third_boost
 ):
     first_speed *= 1000 / 3600
