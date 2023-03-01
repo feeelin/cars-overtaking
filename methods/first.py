@@ -16,4 +16,3 @@ def first(
         else:
             _time = _way / abs(second_speed - first_speed) + (second_speed - first_speed) / first_boost
         return round(_time, 2)
-

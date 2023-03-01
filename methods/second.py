@@ -28,7 +28,3 @@ def second(
 
         return 'smash'
 
-
-print(
-    second(50, 2, 4, 0, 4, 8, 130, 60, 1, 600, 100, 0)
-)
