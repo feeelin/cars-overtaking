@@ -2,11 +2,12 @@
 
 def third(
         first_speed, first_boost, first_length,
-        first_x, second_length, between_1, max_speed_1,
-        second_speed, second_boost, fourth_x,
+        second_length, between_1, max_speed_1,
+        second_speed, second_boost,
         fourth_speed, fourth_boost, fourth_length,
         between_2, max_speed_4,
-        third_speed, third_boost, third_length
+        third_speed, third_boost, third_length,
+        third_between
 ):
     # km/h --> m/s
 
@@ -15,6 +16,11 @@ def third(
     second_speed *= 1000 / 3600
     max_speed_4 *= 1000 / 3600
     third_speed *= 1000 / 3600
+
+    first_x = 0
+    second_x = first_x + between_1 + second_length
+    third_x = second_x + third_between
+    fourth_x = third_x + between_2
 
     if max_speed_1 > second_speed and (first_speed > second_speed or first_boost > second_boost):
         _first_way = 2 * between_1 + first_length + second_length

@@ -2,14 +2,18 @@
 
 def second(
         first_speed, first_boost, first_length,
-        first_x, second_length, between,
+        second_length, between,
         max_speed, second_speed, second_boost,
-        third_x, third_speed, third_boost
+        third_speed, third_boost, third_between
 ):
     first_speed *= 1000 / 3600
     max_speed *= 1000 / 3600
     second_speed *= 1000 / 3600
     third_speed *= 1000/3600
+
+    first_x = 0
+    second_x = first_x + between + second_length
+    third_x = second_x + third_between
 
     if max_speed > second_speed and (first_speed > second_speed or first_boost > second_boost):
 
