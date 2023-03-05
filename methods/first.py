@@ -15,4 +15,4 @@ def first(
             _time = _way / abs(second_speed - first_speed)
         else:
             _time = _way / abs(second_speed - first_speed) + (second_speed - first_speed) / first_boost
-        return round(_time, 2)
+        return abs(round(_time, 2))

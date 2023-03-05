@@ -41,7 +41,7 @@ def third(
                 _second_time = _second_way / abs(third_speed - fourth_speed) + abs(third_speed - fourth_speed) / \
                                fourth_boost
 
-        _time = max(_first_time, _second_time)
+        _time = max(abs(_first_time), abs(_second_time))
 
         _new_first_x = first_x + first_speed * _time + (first_boost * _time ** 2) / 2
         _new_fourth_x = fourth_x + fourth_speed * _time + (fourth_boost * _time ** 2) / 2

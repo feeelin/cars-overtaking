@@ -29,7 +29,7 @@ def second(
         _new_third_x = third_x - third_speed * _time - (third_boost * (_time ** 2)) / 2
 
         if _new_first_x < _new_third_x:
-            return round(_time, 2)
+            return abs(round(_time, 2))
 
         return 'smash'
 
