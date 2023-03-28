@@ -28,17 +28,15 @@ system alert.</p>
 <p>For first <code>first</code> method transforming entered values to the desired number system. Next it 
 checking the possibility of overtaking(if first car has more boost or speed then second car). Next it 
 calculates the way desired to complete overtaking: <code>_way = 2 * between + first_length + second_length</code>.
-And finally program can calculate the time of overtaking. If first car don't have a boost <code>
-_time = _way / abs(second_speed - first_speed)</code>, in another case <code>_time = _way / abs(second_speed - first_
-speed) + (second_speed - first_speed) / first_boost</code>. If this method has a result, it will return them,
+And finally program can calculate the time of overtaking. If first car don't have a boost <code>_time = _way / abs(second_speed - first_speed)</code>, in another case <code>_time = _way / abs(second_speed - first_speed) + (second_speed - first_speed) / first_boost</code>. If this method has a result, it will return them,
 if not program return <code>None</code></p>
 
 <h3>Second method</h3>
 <p>This method works like first method for first two cars, but for third car it has some changes.
 After calculating first and second cars parameters, program finds coordinate X for first and third cars 
 <code>_new_first_x = first_x + first_speed * _time + (first_boost * (_time ** 2)) / 2</code>
-where <code>first_x = 0</code> and <code>_new_third_x = third_x - third_speed * _time - (third_boost * (_time ** 2)) / 
-2</code> where <code>third_x = second_x + third_between</code>.</p>
+where <code>first_x = 0</code> and <code>_new_third_x = third_x - third_speed * _time - (third_boost * (_time ** 2)) / 2</code>
+where <code>third_x = second_x + third_between</code>.</p>
 <p>If first car's coordinate lower than third car's program returns result. If not program returning <code>'smash'</code>
 which signals to <code>second_method</code> in <code>App</code> class to display smash alert.</p>
 
