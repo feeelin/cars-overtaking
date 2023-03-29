@@ -45,3 +45,4 @@ which signals to <code>second_method</code> in <code>App</code> class to display
 to overtaking for first two cars and two another. After finding two times to overtaking,
 program takes higher of them like main time and calculates coordinates to first and 
 fourth car after main time. All return features working like in second method.</p>
+
